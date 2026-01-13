@@ -1,0 +1,14 @@
+version: '3.8'
+
+services:
+  api:
+    build: .
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./data:/app/data
+    environment:
+      - WEBHOOK_SECRET=your_super_secret_key_change_me
+      - DATABASE_URL=sqlite+aiosqlite:///./data/app.db
+      - LOG_LEVEL=INFO
+    restart: unless-stopped
